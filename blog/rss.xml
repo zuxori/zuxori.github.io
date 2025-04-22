@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="rss.xsl"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>ZU X ORI Blog</title>
+        <link>https://zuxori.github.io/blog</link>
+        <description>ZU X ORI Blog</description>
+        <lastBuildDate>Tue, 22 Apr 2025 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[Welcome to the ZU X ORI Blog]]></title>
+            <link>https://zuxori.github.io/blog/2025/04/22/welcome</link>
+            <guid>https://zuxori.github.io/blog/2025/04/22/welcome</guid>
+            <pubDate>Tue, 22 Apr 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[This is our first post! Stay tuned for updates, behind‑the‑scenes lore, and world‑building insights.]]></description>
+            <content:encoded><![CDATA[<p>This is our first post! Stay tuned for updates, behind‑the‑scenes lore, and world‑building insights.</p>]]></content:encoded>
+        </item>
+    </channel>
+</rss>

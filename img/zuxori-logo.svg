@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024px" height="1024px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>zuxori-logo</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="1024" height="1024" rx="259"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="zuxori-logo">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Rectangle" fill-opacity="0" fill="#FFFFFF" xlink:href="#path-1"></use>
+            <g id="Group-3" mask="url(#mask-2)" fill="#EC3D9F">
+                <g transform="translate(-238.3527, -237.8527)">
+                    <polygon id="Rectangle" transform="translate(750, 750) rotate(-45) translate(-750, -750)" points="-187.901585 627.241413 1687.90158 627.241413 1687.90158 872.758587 -187.901585 872.758587"></polygon>
+                    <polygon id="Rectangle-Copy" transform="translate(750, 750) rotate(-135) translate(-750, -750)" points="-187.901585 627.241413 1687.90158 627.241413 1687.90158 872.758587 -187.901585 872.758587"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
