@@ -1,0 +1,148 @@
+.heroContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1080px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 4rem 1rem;
+}
+
+@media (max-width: 900px) {
+  .heroContent {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.heroText, .heroImage {
+  flex: 1;
+  min-width: 0;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+
+.cta {
+  background-color: #EC3D9F;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.cta:hover {
+  background-color: #b42576;
+}
+
+.secondary {
+  color: #555;
+  padding: 0.75rem 1.5rem;
+  text-decoration: underline;
+}
+
+.extensions {
+  padding: 4rem 1rem;
+  background: #fcf8fb;
+  text-align: center;
+}
+
+.sectionHeader h2 {
+  font-size: 2.5rem; /* Bigger headline */
+  font-weight: 700;   /* Bolder */
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.repoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  max-width: 1080px;
+}
+
+@media (max-width: 900px) {
+  .repoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .repoGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.repoCard {
+  background: white;
+  aspect-ratio: 3 / 2;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  text-align: left;
+  transition: transform 0.2s ease;
+}
+
+.repoCard:hover {
+  transform: translateY(-4px);
+}
+
+.repoCard .emoji {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.repoCard h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.repoCard p {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.repoCard a {
+  font-weight: 500;
+  color: #EC3D9F;
+  text-decoration: underline;
+}
+
+.coreRepos {
+  padding: 3rem 1rem;
+  background: #fcf8fb;
+  text-align: center;
+}
