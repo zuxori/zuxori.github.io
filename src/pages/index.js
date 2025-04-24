@@ -1,12 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import styles from './index.module.css';
 
 export default function Home() {
-  // Client-only initialization of smooth-scroll
+  // 🔁 State for dynamic placeholder
+  const zuPrompts = [
+    "Ask Zu .. what it feels like to remember a life that hasn’t happened yet",
+    "Ask Zu .. what changed after Verona",
+    "Ask Zu .. if Ori always finds her",
+    "Ask Zu .. what Tai is hiding",
+    "Ask Zu .. how many timelines she’s broken",
+    "Ask Zu .. who she was before Juliet",
+    "Ask Zu .. if memory is something you can trust",
+    "Ask Zu .. what the red thread is tied to",
+    "Ask Zu .. why some lives are louder than others",
+    "Ask Zu .. if this version of the story ends differently"
+  ];
+
+  const [placeholder, setPlaceholder] = React.useState(zuPrompts[0]);
+
+  // 🎯 Animate placeholder every 4 seconds
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      const random = Math.floor(Math.random() * zuPrompts.length);
+      setPlaceholder(zuPrompts[random]);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // 🌊 Smooth scroll setup
   useEffect(() => {
-    // Dynamically import so SSR never tries to load it
     import('smooth-scroll').then(({ default: SmoothScroll }) => {
       new SmoothScroll('a[href*="#"]', {
         speed: 300,
@@ -59,6 +83,30 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+         {/* Chat Section */}
+                <section id="chat" className={`${styles.coreRepos} ${styles.llmEmbed}`}>
+                  <div className={styles.sectionHeader}>
+                    <h2>Chat with Zu</h2>
+                    <p>Ask Zu about her story, her memories, and the lore of ZU X ORI</p>
+                  </div>
+
+                  <div className={styles.llmInputBox}>
+                    <input
+                      type="text"
+                      placeholder={placeholder}
+                      className={styles.llmInput}
+                    />
+                    <button className={styles.llmSubmit}>Send</button>
+                  </div>
+
+                  <iframe
+                    src="https://huggingface.co/embed/USERNAME/zuxori-chat?token=YOUR_TOKEN"
+                    style={{ width: '100%', height: '600px', border: 'none' }}
+                    allow="clipboard-read; clipboard-write"
+                    title="ZU LLM"
+                  ></iframe>
+                </section>
 
               {/* Visual Cards */}
                 <section className={styles.coreRepos}>
@@ -233,26 +281,6 @@ export default function Home() {
             </div>
         </section>
 
-        <section id="chat" className={`${styles.coreRepos} ${styles.llmEmbed}`}>
-            <div className={styles.sectionHeader}>
-              <h2>Chat with Zu</h2>
-              <p>Interact with a language model trained on the lore of ZU X ORI.</p>
-            </div>
-            <div className={styles.llmInputBox}>
-              <input
-                type="text"
-                placeholder="Ask Zu..."
-                className={styles.llmInput}
-              />
-              <button className={styles.llmSubmit}>Send</button>
-            </div>
-            <iframe
-              src="https://huggingface.co/embed/USERNAME/zuxori-chat?token=YOUR_TOKEN"
-              style={{ width: '100%', height: '600px', border: 'none' }}
-              allow="clipboard-read; clipboard-write"
-              title="ZU X ORI LLM"
-            ></iframe>
-          </section>
 
       </main>
     </Layout>
