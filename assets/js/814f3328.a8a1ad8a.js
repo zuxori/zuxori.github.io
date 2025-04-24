@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkzuxori=self.webpackChunkzuxori||[]).push([[7472],{5513:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Welcome to the ZU\xa0X\xa0ORI Blog","permalink":"/blog/2025/04/22/welcome","unlisted":false,"date":"2025-04-22T00:00:00.000Z"}]}')}}]);
