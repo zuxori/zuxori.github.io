@@ -1,24 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import styles from './index.module.css';
-import SmoothScroll from 'smooth-scroll';
-
-if (typeof window !== 'undefined') {
-  new SmoothScroll('a[href*="#"]', {
-    speed: 300, // adjust to control scroll speed
-    speedAsDuration: true,
-    easing: 'linear', // ✅ no ease-in-out — just go
-    offset: 0,
-  });
-}
-
 
 export default function Home() {
+  // Client-only initialization of smooth-scroll
+  useEffect(() => {
+    // Dynamically import so SSR never tries to load it
+    import('smooth-scroll').then(({ default: SmoothScroll }) => {
+      new SmoothScroll('a[href*="#"]', {
+        speed: 300,
+        speedAsDuration: true,
+        easing: 'linear',
+        offset: 0,
+      });
+    });
+  }, []);
+
   return (
-    <Layout title="ZU X ORI Repository Portal" description="The reincarnation sequel to Romeo + Juliet, told through story, research, and mythic design — across lifetimes, timelines, and GitHub repositories.">
+    <Layout
+      title="ZU X ORI Repository Portal"
+      description="The reincarnation sequel to Romeo + Juliet, told through story, research, and mythic design — across lifetimes, timelines, and GitHub repositories."
+    >
       <Head>
-          <title>ZU X ORI Repository Portal</title>
+        <title>ZU X ORI Repository Portal</title>
       </Head>
       
       <main>
