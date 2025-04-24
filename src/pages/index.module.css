@@ -1,3 +1,7 @@
+.hero {
+  background: #fcf8fb;
+}
+
 .heroContent {
   display: flex;
   flex-direction: row;
@@ -31,10 +35,11 @@
 
 .title {
   font-size: 3rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   margin-bottom: 1rem;
   color: #1a1a1a;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .subtitle {
@@ -76,11 +81,19 @@
   text-align: center;
 }
 
+.section {
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
 .sectionHeader h2 {
   font-size: 2.5rem; /* Bigger headline */
   font-weight: 700;   /* Bolder */
   margin-bottom: 0.75rem;
   letter-spacing: -0.01em;
+}
+.sectionHeader p {
+  margin-bottom: 3%; /* or 2.5rem for subtle spacing */
 }
 
 .repoGrid {
@@ -142,7 +155,147 @@
 }
 
 .coreRepos {
-  padding: 3rem 1rem;
+  padding: 4rem 1rem;
   background: #fcf8fb;
   text-align: center;
+}
+
+.visualCards {
+  padding: 4rem 1rem;
+  background: #f7f4f9;
+  text-align: center;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.imageCard {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  overflow: hidden;
+  text-align: left;
+}
+
+.imageCard img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.imageCard h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.imageCard p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.cardButton {
+  display: block;
+  width: 100%;
+  background-color: #EC3D9F;
+  color: white;
+  padding: 0.75rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 1rem;
+  transition: background 0.2s ease;
+}
+
+.cardButton:hover {
+  background-color: #b42576;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.llmInputBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.llmInput {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: inherit;
+  background: #fff;
+  color: #333;
+}
+
+.llmSubmit {
+  padding: 0.75rem 1.25rem;
+  background-color: #EC3D9F;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.llmSubmit:hover {
+  background-color: #b42576;
+}
+
+.ecosystem {
+  background: #fcf8fb;
+}
+
+.ecosystemGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.ecosystemCard {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  text-align: left;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ecosystemCard:hover {
+  transform: translateY(-4px);
+}
+
+.ecosystemImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
 }

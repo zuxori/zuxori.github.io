@@ -68,19 +68,16 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
       metadata: [
 
         { name: 'description', content: 'ZU X ORI is the reincarnation sequel to Romeo and Juliet, told across open story repositories: episodes, characters, research, imagery, and lore.' },
         { name: 'google-site-verification', content: 'mirBolSMbVy5IId-raVFxc9MJuQ6gsSRunZNPNrrf_k' },
 
         { name: 'twitter:card', content: 'summary_large_image' },
-        { property: 'og:title', content: 'ZU X ORI: The Reincarnation Sequel to Romeo + Juliet' },
-        { property: 'og:description', content: 'A reincarnation-era story told through memory, myth, voice, and visuals. Explore the ZU X ORI universe across episodes, characters, and creative media.' },
-        { property: 'og:image', content: 'https://zuxori.github.io/zuxori.png' },
+        { property: 'og:title', content: 'ZU X ORI Repository Portal' },
+        { property: 'og:description', content: 'The reincarnation sequel to Romeo + Juliet, told through story, research, and mythic design — across lifetimes, timelines, and GitHub repositories.' },
+        { property: 'og:image', content: 'https://zuxori.github.io/img/logo.png' },
         { property: 'og:image:type', content: 'image/png' },
-        { property: 'og:image:width', content: '2400' },
-        { property: 'og:image:height', content: '1256' },
         { property: 'og:url', content: 'https://zuxori.github.io/' },
         { property: 'og:type', content: 'website' }
       ],
@@ -94,9 +91,9 @@ const config = {
         items: [
           {
             type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            sidebarId: 'archiveSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Archive',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
