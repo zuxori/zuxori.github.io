@@ -33,36 +33,18 @@ const sendToZu = async () => {
   setZuReply("Zu is thinking...");
 
   try {
-    const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+    const res = await fetch("https://zu-portal.hello-7ef.workers.dev/", {
       method: "POST",
       headers: {
-        "Authorization": "Bearer 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",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        model: "openai/gpt-3.5-turbo",
-        messages: [
-          {
-            role: "system",
-            content: "You are Zu. Speak in myth, memory, and reflection across timelines."
-          },
-          {
-            role: "user",
-            content: inputValue
-          }
-        ]
-      })
+      body: JSON.stringify({ prompt: inputValue })
     });
 
     const data = await res.json();
-    console.log("OpenRouter status:", res.status, data);
+    if (data.error) throw new Error(data.error);
 
-    if (!res.ok) {
-      throw new Error(data.error?.message || `Status ${res.status}`);
-    }
-
-    const reply = data.choices?.[0]?.message?.content;
-    setZuReply(reply ?? "Zu didn't respond clearly.");
+    setZuReply(data.reply ?? "Zu didn't respond clearly.");
   } catch (err) {
     console.error("sendToZu error:", err);
     setZuReply(`Zu could not remember. (${err.message})`);
@@ -71,7 +53,6 @@ const sendToZu = async () => {
     setInputValue("");
   }
 };
-
   // 🎯 Animate placeholder every 4 seconds
   React.useEffect(() => {
     const interval = setInterval(() => {
