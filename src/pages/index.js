@@ -50,7 +50,7 @@ export default function Home() {
       description="The reincarnation sequel to Romeo + Juliet, told through story, research, and mythic design — across lifetimes, timelines, and GitHub repositories."
     >
       <Head>
-        <title>ZU X ORI Repository Portal</title>
+        <title>ZU X ORI Portal</title>
       </Head>
       
       <main>
