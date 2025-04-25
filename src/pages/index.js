@@ -46,7 +46,7 @@ export default function Home() {
 
   return (
     <Layout
-      title="ZU X ORI Repository Portal"
+      title="ZU X ORI Portal"
       description="The reincarnation sequel to Romeo + Juliet, told through story, research, and mythic design — across lifetimes, timelines, and GitHub repositories."
     >
       <Head>
