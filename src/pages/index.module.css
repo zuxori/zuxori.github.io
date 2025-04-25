@@ -38,13 +38,64 @@
   font-weight: 700;
   letter-spacing: -0.01em;
   margin-bottom: 1rem;
-  color: #1a1a1a;
+  color: #EC3D9F;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: block;
+  align-items: center;
+}
+.plusRotate {
+  --y-offset: -0.08em;               /* ← tweak this until it sits perfectly */
+  display: inline-block;
+  position: relative;
+  top: var(--y-offset);              /* lift the whole spinner up */
+  width: 0.6em;
+  height: 0.6em;
+  margin: 0 0.15em;
+  transform-origin: center center;
+  color: #000;                       /* always black */
+  animation: spinWithPauses 16s ease-in-out infinite;
+  vertical-align: middle;
+  line-height: 0;
+}
+
+.barHorizontal,
+.barVertical {
+  position: absolute;
+  background: currentColor;
+}
+
+.barHorizontal {
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 0.15em;
+  transform: translate(-50%, -50%);
+}
+
+.barVertical {
+  top: 50%;
+  left: 50%;
+  width: 0.15em;
+  height: 100%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spinWithPauses {
+   0%,    6.25%   { transform: rotate(   0deg); }
+  12.5%, 18.75%   { transform: rotate(  -45deg); }
+  25%,   31.25%   { transform: rotate(  -90deg); }
+  37.5%, 43.75%   { transform: rotate( -135deg); }
+  50%,   56.25%   { transform: rotate( -180deg); }
+  62.5%, 68.75%   { transform: rotate( -225deg); }
+  75%,   81.25%   { transform: rotate( -270deg); }
+  87.5%, 93.75%   { transform: rotate( -315deg); }
+  100%            { transform: rotate( -360deg); }
 }
 
 .subtitle {
   font-size: 1.25rem;
-  color: #666;
+  font-weight: 500;
+  color: #555;
   margin-bottom: 2rem;
 }
 

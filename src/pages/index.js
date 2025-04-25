@@ -57,9 +57,16 @@ export default function Home() {
           <div className={styles.heroContent}>
             <div className={styles.heroText}>
               <h1 className={styles.title}>ZU X ORI</h1>
-              <p className={styles.subtitle}>Reborn in New York. Haunted by Verona.</p>
+              <h2 className={styles.title}>
+  the open-source reincarnation sequel to Romeo{" "}
+  <span className={styles.plusRotate}>
+    <span className={styles.barHorizontal} />
+    <span className={styles.barVertical} />
+  </span>{" "}
+  Juliet
+</h2>           <p className={styles.subtitle}>Reborn in New York. Haunted by Verona.</p>
               <p className={styles.tagline}>
-                The reincarnation sequel to Romeo + Juliet, told through story, research, and mythic design — across lifetimes, timelines, and GitHub repositories.
+               
               </p>
               <div className={styles.buttonGroup}>
                 <a
@@ -88,7 +95,7 @@ export default function Home() {
                 <section id="chat" className={`${styles.coreRepos} ${styles.llmEmbed}`}>
                   <div className={styles.sectionHeader}>
                     <h2>Chat with Zu</h2>
-                    <p>Ask Zu about her story, her memories, and the lore of ZU X ORI</p>
+                    <p>About her story, her memories, and the lore of ZU X ORI</p>
                   </div>
 
                   <div className={styles.llmInputBox}>
