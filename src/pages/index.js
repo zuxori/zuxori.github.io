@@ -36,7 +36,7 @@ const sendToZu = async () => {
     const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": "Bearer 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",
+        "Authorization": "Bearer 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",
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
