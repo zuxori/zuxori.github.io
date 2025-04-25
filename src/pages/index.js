@@ -4,6 +4,9 @@ import Head from '@docusaurus/Head';
 import styles from './index.module.css';
 
 export default function Home() {
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+
   // 🔁 State for dynamic placeholder
   const zuPrompts = [
     "Ask Zu .. what it feels like to remember a life that hasn’t happened yet",
@@ -99,26 +102,40 @@ export default function Home() {
                   </div>
 
                   <div className={styles.llmInputBox}>
-                    <input
-                      type="text"
-                      placeholder={placeholder}
-                      className={styles.llmInput}
-                    />
-                    <button className={styles.llmSubmit}>Send</button>
-                  </div>
+                      <input
+                        type="text"
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        placeholder={placeholder}
+                        className={styles.llmInput}
+                      />
+                      <button
+                        className={styles.llmSubmit}
+                        onClick={() => {
+                          if (inputValue.trim() !== '') {
+                            setHasInteracted(true);
+                            // You could trigger something here if needed
+                          }
+                        }}
+                      >
+                        Send
+                      </button>
+                    </div>
 
-                  <iframe
-                    src="https://huggingface.co/embed/USERNAME/zuxori-chat?token=YOUR_TOKEN"
-                    style={{ width: '100%', height: '600px', border: 'none' }}
-                    allow="clipboard-read; clipboard-write"
-                    title="ZU LLM"
-                  ></iframe>
+                    {hasInteracted && (
+                      <iframe
+                        src="https://huggingface.co/embed/USERNAME/zuxori-chat?token=YOUR_TOKEN"
+                        style={{ width: '100%', height: '600px', border: 'none', marginTop: '2rem' }}
+                        allow="clipboard-read; clipboard-write"
+                        title="CHAT WITH ZU"
+                      ></iframe>
+                    )}
                 </section>
 
               {/* Visual Cards */}
                 <section className={styles.coreRepos}>
                   <div className={styles.sectionHeader}>
-                    <h2>The ZU X ORI Open Universe</h2>
+                    <h2>ZU X ORI Open Universe</h2>
                     <p>The ZU X ORI universe is a creator-led, open-source mythology</p>
                   </div>
                   <div className={styles.cardGrid}>
@@ -136,9 +153,9 @@ export default function Home() {
                     </div>
                     <div className={styles.imageCard}>
                       <img src="/img/wright.png" alt="Logo Poster" />
-                      <h3>FUTURE OF MEMORY</h3>
-                      <p>Explore our reincarnation technology, mythology, and LLM-authored research.</p>
-                      <a href="#" className={styles.cardButton}>Browse</a>
+                      <h3>MYTH ENGINE</h3>
+                      <p>Explore our reincarnation mythology, retrieval tech, and LLM-authored research.</p>
+                      <a href="#" className={styles.cardButton}>Learn</a>
                     </div>
                   </div>
                 </section>
@@ -146,101 +163,104 @@ export default function Home() {
 
         {/* Core Repos (previously Story Repository) */}
         <section className={styles.coreRepos}>
-          <div className={styles.sectionHeader}>
-            <h2>Core Repos</h2>
-            <p>The source layers — story, character, images, and myth — that shape ZU X ORI</p>
-          </div>
-          <div className={styles.repoGrid}>
-            <div className={styles.repoCard}>
-              <div className={styles.emoji}>📖</div>
-              <h3>Story</h3>
-              <p>Full episode archive and core narrative from Zu and Ori's reincarnated path.</p>
-              <a href="https://github.com/zuxori/story"  target="_blank">View Archive →</a>
-            </div>
-            <div className={styles.repoCard}>
-              <div className={styles.emoji}>🧬</div>
-              <h3>Characters</h3>
-              <p>Profiles, past lives, symbolic items, mythology and memories of the cast reborn.</p>
-              <a href="https://github.com/zuxori/characters"  target="_blank">Meet Them →</a>
-            </div>
-            <div className={styles.repoCard}>
-              <div className={styles.emoji}>🔮</div>
-              <h3>Research</h3>
-              <p>LLM-authored thought papers on reincarnation, karma, memory, and mythology.</p>
-              <a href="https://github.com/zuxori/research"  target="_blank">Explore Papers →</a>
-            </div>
-            <div className={styles.repoCard}>
-              <div className={styles.emoji}>🎨</div>
-              <h3>Images</h3>
-              <p>Logos, posters, and mystic visual symbols from the ZU X ORI creative universe.</p>
-              <a href="https://github.com/zuxori/images"  target="_blank">Browse Visuals →</a>
-            </div>
-            <div className={styles.repoCard}>
-              <div className={styles.emoji}>🖼️</div>
-              <h3>Wallpapers</h3>
-              <p>Download mobile and desktop backgrounds to carry pieces of the story with you.</p>
-              <a href="https://github.com/zuxori/wallpapers"  target="_blank">Get Art →</a>
-            </div>
-            <div className={styles.repoCard}>
-              <div className={styles.emoji}>🤝</div>
-              <h3>Collaboration</h3>
-              <p>Community contributions, creative extensions, and collaborative forks of the ZU X ORI world.</p>
-              <a href="/collaboration">Explore →</a>
-            </div>
-          </div>
-        </section>
+  <div className={styles.sectionHeader}>
+    <h2>Repo Archive</h2>
+    <p>The source layers — story, character, images, and myth — shaping the ZU X ORI world</p>
+  </div>
+  <div className={styles.repoGrid}>
 
-        {/* Extensions (previously Core Repos) */}
-        <section className={styles.extensions}>
-          <div className={styles.sectionHeader}>
-            <h2>Extensions</h2>
-            <p>Explore the foundations of the ZU X ORI universe — from story engine to scent alchemy.</p>
-          </div>
-          <div className={styles.repoGrid}>
-            <div className={styles.repoCard}>
-              <div className={styles.emoji}>🎭</div>
-              <h3>zuxori</h3>
-              <p>The core narrative engine and website for the ZU X ORI experience. Built on Docusaurus.</p>
-              <a href="https://github.com/zuxori/zuxori" target="_blank" rel="noreferrer">View Repo →</a>
-            </div>
-            <div className={styles.repoCard}>
-              <div className={styles.emoji}>🌹</div>
-              <h3>zuxori-social</h3>
-              <p>Fragrance + memory models inspired by Capulet legacy perfumes. Experimental AI + sensory research.</p>
-              <a href="https://github.com/zuxori/zuxori-perfume" target="_blank" rel="noreferrer">View Repo →</a>
-            </div>
-            <div className={styles.repoCard}>
-              <div className={styles.emoji}>🧠</div>
-              <h3>zuxori-ai</h3>
-              <p>Custom GPT agents for Ori, Zu, and Tai. Dialogue tuning and narrative constraints through RAG pipelines.</p>
-              <a href="https://github.com/zuxori/zuxori-ai" target="_blank" rel="noreferrer">View Repo →</a>
-            </div>
-            <div className={styles.repoCard}>
-              <div className={styles.emoji}>🧬</div>
-              <h3>zuxori-timeline</h3>
-              <p>Explores reincarnation logic, narrative timelines, and alternate lifepaths. Foundation for the dream engine.</p>
-              <a href="https://github.com/zuxori/zuxori-timeline" target="_blank" rel="noreferrer">View Repo →</a>
-            </div>
-            <div className={styles.repoCard}>
-              <div className={styles.emoji}>📜</div>
-              <h3>zuxori-lore</h3>
-              <p>Prophecies and mystic history. Source material for the ZU X ORI narrative universe.</p>
-              <a href="https://github.com/zuxori/zuxori-lore" target="_blank" rel="noreferrer">View Repo →</a>
-            </div>
-            <div className={styles.repoCard}>
-              <div className={styles.emoji}>🛠️</div>
-              <h3>zuxori-dev</h3>
-              <p>Development tools, deployment scripts, and system-level utilities for the ZU X ORI ecosystem.</p>
-              <a href="https://github.com/zuxori/zuxori-dev" target="_blank" rel="noreferrer">View Repo →</a>
-            </div>
-          </div>
-        </section>
+    <div className={styles.repoCard}>
+    <a href="https://github.com/zuxori/story" target="_blank" rel="noopener noreferrer" className={styles.externalIcon}>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+    viewBox="0 0 24 24" stroke="#EC3D9F" strokeWidth="2">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6m5-3h5m0 0v5m0-5L10 14" />
+  </svg>
+</a>
+      <div className={styles.repoHeader}>
+        <span className={styles.emoji}>📖</span>
+        <h3>Story</h3>
+      </div>
+      <p>Full episode archive and core narrative from Zu and Ori's reincarnated path.</p>
+    </div>
+
+    <div className={styles.repoCard}>
+      <a href="https://github.com/zuxori/characters" target="_blank" rel="noopener noreferrer" className={styles.externalIcon}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+    viewBox="0 0 24 24" stroke="#EC3D9F" strokeWidth="2">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6m5-3h5m0 0v5m0-5L10 14" />
+  </svg>
+      </a>
+      <div className={styles.repoHeader}>
+        <span className={styles.emoji}>🧬</span>
+        <h3>Characters</h3>
+      </div>
+      <p>Profiles, past lives, symbolic items, and memories of the cast reborn.</p>
+    </div>
+
+    <div className={styles.repoCard}>
+      <a href="https://github.com/zuxori/research" target="_blank" rel="noopener noreferrer" className={styles.externalIcon}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+    viewBox="0 0 24 24" stroke="#EC3D9F" strokeWidth="2">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6m5-3h5m0 0v5m0-5L10 14" />
+  </svg>
+      </a>
+      <div className={styles.repoHeader}>
+        <span className={styles.emoji}>🔮</span>
+        <h3>Research</h3>
+      </div>
+      <p>LLM-authored thought papers on reincarnation, karma, and memory.</p>
+    </div>
+
+    <div className={styles.repoCard}>
+      <a href="https://github.com/zuxori/images" target="_blank" rel="noopener noreferrer" className={styles.externalIcon}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+    viewBox="0 0 24 24" stroke="#EC3D9F" strokeWidth="2">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6m5-3h5m0 0v5m0-5L10 14" />
+  </svg>
+      </a>
+      <div className={styles.repoHeader}>
+        <span className={styles.emoji}>🎨</span>
+        <h3>Images</h3>
+      </div>
+      <p>Covers, logos and posters from the ZU X ORI creative universe.</p>
+    </div>
+
+    <div className={styles.repoCard}>
+      <a href="https://github.com/zuxori/wallpapers" target="_blank" rel="noopener noreferrer" className={styles.externalIcon}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+    viewBox="0 0 24 24" stroke="#EC3D9F" strokeWidth="2">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6m5-3h5m0 0v5m0-5L10 14" />
+  </svg>
+      </a>
+      <div className={styles.repoHeader}>
+        <span className={styles.emoji}>🖼️</span>
+        <h3>Wallpapers</h3>
+      </div>
+      <p>Download mobile and desktop backgrounds to carry with you.</p>
+    </div>
+
+    <div className={styles.repoCard}>
+    <a href="https://github.com/zuxori/wallpapers" target="_blank" rel="noopener noreferrer" className={styles.externalIcon}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+    viewBox="0 0 24 24" stroke="#EC3D9F" strokeWidth="2">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6m5-3h5m0 0v5m0-5L10 14" />
+  </svg>
+      </a>
+      <div className={styles.repoHeader}>
+        <span className={styles.emoji}>🤝</span>
+        <h3>Collaboration</h3>
+      </div>
+      <p> Scenes from the story, artworks by Undeadlu and others.</p>
+    </div>
+
+  </div>
+</section>
 
               {/* Ecosystem */}
                 <section className={`${styles.section} ${styles.ecosystem}`}>
           <div className={styles.sectionHeader}>
-            <h2>Ecosystem</h2>
-            <p>Innovations and interfaces from the ZU X ORI universe — designed for interaction, reflection, and mythic remix.</p>
+            <h2>Creative Ecosystem</h2>
+            <p>Join us in bringing Zu and the ZU X ORI world to life</p>
           </div>
 
           <div className={styles.ecosystemGrid}>
@@ -274,7 +294,7 @@ export default function Home() {
 
             <div className={styles.ecosystemCard}>
               <img src="/img/voice.jpg" alt="ZU Voice Agent" className={styles.ecosystemImage} />
-              <h3>ZU Voice Agent</h3>
+              <h3>Zu Voice Agent</h3>
               <p>A custom-tuned language model trained on Zu’s personality, tone, and narrative arc.</p>
               <a href="#" className={styles.cardButton}>Coming Soon</a>
             </div>
