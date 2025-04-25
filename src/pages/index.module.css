@@ -351,6 +351,28 @@ html {
   transition: all 0.3s ease;
 }
 
+.llmResponse {
+  margin-top: 2rem;
+  background: #fcf8fb; /* very soft mythic pink */
+  border: 1px solid #EC3D9F; /* delicate Zu pink border */
+  padding: 1.5rem;
+  border-radius: 12px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1rem;
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* subtle myth shadow */
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+}
 
 .llmSubmit {
   padding: 0.75rem 1.25rem;

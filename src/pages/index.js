@@ -23,6 +23,55 @@ export default function Home() {
 
   const [placeholder, setPlaceholder] = React.useState(zuPrompts[0]);
 
+const [zuReply, setZuReply] = useState('');
+const [loading, setLoading] = useState(false);
+
+const sendToZu = async () => {
+  if (!inputValue.trim()) return;
+
+  setLoading(true);
+  setZuReply("Zu is thinking...");
+
+  try {
+    const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer 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",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: "openai/gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content: "You are Zu. Speak in myth, memory, and reflection across timelines."
+          },
+          {
+            role: "user",
+            content: inputValue
+          }
+        ]
+      })
+    });
+
+    const data = await res.json();
+    console.log("OpenRouter status:", res.status, data);
+
+    if (!res.ok) {
+      throw new Error(data.error?.message || `Status ${res.status}`);
+    }
+
+    const reply = data.choices?.[0]?.message?.content;
+    setZuReply(reply ?? "Zu didn't respond clearly.");
+  } catch (err) {
+    console.error("sendToZu error:", err);
+    setZuReply(`Zu could not remember. (${err.message})`);
+  } finally {
+    setLoading(false);
+    setInputValue("");
+  }
+};
+
   // 🎯 Animate placeholder every 4 seconds
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -102,33 +151,41 @@ export default function Home() {
                   </div>
 
                   <div className={styles.llmInputBox}>
-                      <input
-                        type="text"
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
-                        placeholder={placeholder}
-                        className={styles.llmInput}
-                      />
-                      <button
-                        className={styles.llmSubmit}
-                        onClick={() => {
-                          if (inputValue.trim() !== '') {
-                            setHasInteracted(true);
-                            // You could trigger something here if needed
-                          }
-                        }}
-                      >
-                        Send
-                      </button>
-                    </div>
+                  <input
+  type="text"
+  value={inputValue}
+  onChange={(e) => setInputValue(e.target.value)}
+  onKeyDown={(e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); // Prevents default form submit behavior if inside a form
+      sendToZu();
+    }
+  }}
+  placeholder={placeholder}
+  className={styles.llmInput}
+/>
+  <button
+    className={styles.llmSubmit}
+    onClick={sendToZu}
+    disabled={loading}
+  >
+    {loading ? "..." : "Send"}
+  </button>
+</div>
+
+{zuReply && (
+  <div className={styles.llmResponse}>
+    <p>{zuReply}</p>
+  </div>
+)}
 
                     {hasInteracted && (
-                      <iframe
-                        src="https://huggingface.co/embed/USERNAME/zuxori-chat?token=YOUR_TOKEN"
-                        style={{ width: '100%', height: '600px', border: 'none', marginTop: '2rem' }}
-                        allow="clipboard-read; clipboard-write"
-                        title="CHAT WITH ZU"
-                      ></iframe>
+                     <iframe
+                     src="https://zuxori-zu.hf.space"
+                     style={{ width: "100%", height: "600px", border: "none" }}
+                     title="Chat with Zu"
+                     allow="clipboard-read; clipboard-write"
+                   />
                     )}
                 </section>
 
@@ -268,7 +325,7 @@ export default function Home() {
               <img src="/img/lora.jpg" alt="ZU / LoRA" className={styles.ecosystemImage} />
               <h3>Zu / LoRA Model</h3>
               <p>A Flux LoRA image model fine-tuned on Zu's visual identity.</p>
-              <a href="https://huggingface.co/USERNAME/zu-lora" target="_blank" className={styles.cardButton}>Create on 🤗</a>
+              <a href="https://huggingface.co/USERNAME/zu-lora" target="_blank" className={styles.cardButton}>Generate</a>
             </div>
             
             <div className={styles.ecosystemCard}>
@@ -293,10 +350,10 @@ export default function Home() {
             </div>
 
             <div className={styles.ecosystemCard}>
-              <img src="/img/voice.jpg" alt="ZU Voice Agent" className={styles.ecosystemImage} />
-              <h3>Zu Voice Agent</h3>
+              <img src="/img/voice.jpg" alt="ZU Voice" className={styles.ecosystemImage} />
+              <h3>Zu Voice</h3>
               <p>A custom-tuned language model trained on Zu’s personality, tone, and narrative arc.</p>
-              <a href="#" className={styles.cardButton}>Coming Soon</a>
+              <a href="#" className={styles.cardButton}>Meet Zu</a>
             </div>
 
             <div className={styles.ecosystemCard}>
