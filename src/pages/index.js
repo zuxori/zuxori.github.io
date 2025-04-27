@@ -26,28 +26,62 @@ export default function Home() {
 const [zuReply, setZuReply] = useState('');
 const [loading, setLoading] = useState(false);
 
+// Helper: read an OpenAI-style text/event-stream
+async function readEventStream(stream, onChunk) {
+  const reader  = stream.getReader();
+  const decoder = new TextDecoder("utf-8");
+  let buffer = "";
+
+  while (true) {
+    const { value, done } = await reader.read();
+    if (done) break;
+
+    buffer += decoder.decode(value, { stream: true });
+    const lines = buffer.split("\n\n");
+    buffer = lines.pop();               // keep incomplete line
+
+    for (const line of lines) {
+      if (!line.startsWith("data: ")) continue;
+      const payload = line.slice(6).trim();
+
+      if (payload === "[DONE]") return; // OpenAI done marker
+      const json = JSON.parse(payload);
+      const delta = json.choices?.[0]?.delta?.content;
+      if (delta) onChunk(delta);
+    }
+  }
+}
+
 const sendToZu = async () => {
   if (!inputValue.trim()) return;
 
   setLoading(true);
-  setZuReply("Zu is thinking...");
+  setZuReply("Messaging Zu...");
 
   try {
     const res = await fetch("https://zu-portal.hello-7ef.workers.dev/", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ prompt: inputValue })
     });
 
-    const data = await res.json();
-    if (data.error) throw new Error(data.error);
+    // ── Streaming mode ──────────────────────────────────────────
+    const ctype = res.headers.get("Content-Type") || "";
+    if (ctype.startsWith("text/event-stream")) {
+      setZuReply("");                                  // reset chat bubble
+      await readEventStream(res.body, chunk =>
+        setZuReply(prev => prev + chunk)               // append tokens live
+      );
+    } else {
+      // ── Fallback to JSON mode ────────────────────────────────
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setZuReply(data.reply ?? "Zu didn't respond clearly.");
+    }
 
-    setZuReply(data.reply ?? "Zu didn't respond clearly.");
   } catch (err) {
     console.error("sendToZu error:", err);
-    setZuReply(`Zu could not remember. (${err.message})`);
+    setZuReply(`Zu is in class. (${err.message})`);
   } finally {
     setLoading(false);
     setInputValue("");
