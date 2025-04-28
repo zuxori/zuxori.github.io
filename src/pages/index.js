@@ -26,6 +26,11 @@ export default function Home() {
 const [zuReply, setZuReply] = useState('');
 const [loading, setLoading] = useState(false);
 
+// ── new image state ─────────────────────────────────────────
+const [imgPrompt, setImgPrompt]   = useState("");
+const [imgUrl,    setImgUrl]      = useState("");
+const [imgLoading,setImgLoading]  = useState(false);
+
 const sendToZu = async () => {
   if (!inputValue.trim()) return;
 
@@ -53,6 +58,33 @@ const sendToZu = async () => {
     setInputValue("");
   }
 };
+
+// ── IMAGE: call zu-lora /image ──────────────────────────────
+const generateImage = async () => {
+  if (!imgPrompt.trim()) return;
+  setImgLoading(true);
+  setImgUrl("");
+
+  try {
+    const res = await fetch(
+      "https://zu-lora.hello-7ef.workers.dev/",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: imgPrompt })
+      }
+    );
+    const { image, error } = await res.json();
+    if (error) throw new Error(error);
+    setImgUrl(image);
+  } catch (err) {
+    console.error("generateImage error:", err);
+    alert("Image generation failed: " + err.message);
+  } finally {
+    setImgLoading(false);
+  }
+};
+
   // 🎯 Animate placeholder every 4 seconds
   React.useEffect(() => {
     const interval = setInterval(() => {
