@@ -52,7 +52,7 @@ const sendToZu = async () => {
     setZuReply(data.reply ?? "Zu didn't respond clearly.");
   } catch (err) {
     console.error("sendToZu error:", err);
-    setZuReply(`Zu is in class. (${err.message})`);
+    setZuReply(`Zu is in class.`);
   } finally {
     setLoading(false);
     setInputValue("");
