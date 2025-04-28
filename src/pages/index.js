@@ -219,7 +219,7 @@ const generateImage = async () => {
                       <img src="/img/zu-profile.png" alt="Zu Poster" />
                       <h3>ZU</h3>
                       <p>Juliet reborn. Storyteller and co-host of the ZU X ORI podcast.</p>
-                      <a href="#" className={styles.cardButton}>Listen</a>
+                      <a href="https://open.spotify.com/show/34Dy2R2iBFOaKowM1DbOBn" target="_blank" className={styles.cardButton}>Listen</a>
                     </div>
                     <div className={styles.imageCard}>
                       <img src="/img/wright.png" alt="Logo Poster" />
