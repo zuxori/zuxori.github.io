@@ -297,20 +297,26 @@
 .cardButton {
   display: block;
   width: 100%;
-  background-color: #EC3D9F;
-  color: white;
-  padding: 0.75rem 0;
+  background: #EC3D9F;
+  color: #fff;
+  padding: 0.75rem 0;          /* identical vertical height */
   font-size: 1rem;
   font-weight: 600;
   border-radius: 6px;
-  text-decoration: none;
   text-align: center;
   margin-top: 1rem;
   transition: background 0.2s ease;
+  line-height: 1.65; /* added for 11 Labs button */
+
+  /* reset the native button look */
+  border: none;                /* removes the grey button border */
+  outline: none;               /* removes the grey focus outline */
+  appearance: none;            /* kills OS-specific bevels/gradients */
+  cursor: pointer;             /* pointer on both <a> & <button> */
 }
 
 .cardButton:hover {
-  background-color: #b42576;
+  background: #b42576;
 }
 
 html {

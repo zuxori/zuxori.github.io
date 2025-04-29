@@ -109,22 +109,22 @@ const config = {
           {
             title: 'Story',
             items: [
-              { label: 'Episodes', to: '/docs/intro' },
-              { label: 'Characters', to: '/characters' }
+              { label: 'Amazon', to: 'https://www.amazon.com/dp/B0DJ4TFSWM' },
+              { label: 'Spotify', to: 'https://open.spotify.com/show/34Dy2R2iBFOaKowM1DbOBn' }
             ],
           },
           {
-            title: 'Community',
+            title: 'Social',
             items: [
-              { label: 'GitHub', href: 'https://github.com/zuxori' },
-              { label: 'Twitter / X', href: 'https://x.com/zuxori' }
+              { label: 'Instagram', href: 'https://www.instagram.com/zuxori.official' },
+              { label: 'TikTok', href: 'https://www.tiktok.com/@zudreamer' }
             ],
           },
           {
             title: 'More',
             items: [
-              { label: 'Blog', to: '/blog' },
-              { label: 'ZU X ORI', href: 'https://zuxori.com' },
+              { label: 'Spotify', to: 'https://open.spotify.com/show/34Dy2R2iBFOaKowM1DbOBn' },
+              { label: 'zuxori.com', href: 'https://zuxori.com' },
             ],
           },
         ],

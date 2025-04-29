@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import styles from './index.module.css';
+import ElevenLabsChat from '../components/ElevenLabsChat';
 
 export default function Home() {
   const [hasInteracted, setHasInteracted] = useState(false);
@@ -19,10 +20,9 @@ export default function Home() {
     "Ask Zu .. what the red thread is tied to",
     "Ask Zu .. why some lives are louder than others",
     "Ask Zu .. if this version of the story ends differently"
-  ];
+  ];  
 
-  const [placeholder, setPlaceholder] = React.useState(zuPrompts[0]);
-
+const [placeholder, setPlaceholder] = React.useState(zuPrompts[0]);
 const [zuReply, setZuReply] = useState('');
 const [loading, setLoading] = useState(false);
 
@@ -30,6 +30,9 @@ const [loading, setLoading] = useState(false);
 const [imgPrompt, setImgPrompt]   = useState("");
 const [imgUrl,    setImgUrl]      = useState("");
 const [imgLoading,setImgLoading]  = useState(false);
+
+// ── new voice chat state ─────────────────────────────────────
+const [voiceOpen, setVoiceOpen] = useState(false);
 
 const sendToZu = async () => {
   if (!inputValue.trim()) return;
@@ -113,6 +116,22 @@ const generateImage = async () => {
     >
       <Head>
         <title>ZU X ORI Portal</title>
+         {/* Tell the widget not to inject its pink bubble */}
+  <script
+    dangerouslySetInnerHTML={{
+      __html: `
+        window.__ElevenLabsConvai = {
+          showDefaultButton: false   /* ← official flag */
+        };
+      `,
+    }}
+  />
+  {/* …then load the widget itself */}
+  <script
+    src="https://elevenlabs.io/convai-widget/index.js"
+    async
+    type="text/javascript"
+  />
       </Head>
       
       <main>
@@ -352,7 +371,7 @@ const generateImage = async () => {
               <img src="/img/podcast.png" alt="Podcast" className={styles.ecosystemImage} />
               <h3>Podcast</h3>
               <p>Hosted by Sov and Zu. Conversations on memory, identity, myth, and tech.</p>
-              <a href="https://open.spotify.com/show/YOUR-PODCAST-LINK" target="_blank" className={styles.cardButton}>Listen</a>
+              <a href="https://open.spotify.com/show/34Dy2R2iBFOaKowM1DbOBn" target="_blank" className={styles.cardButton}>Listen</a>
             </div>
 
             <div className={styles.ecosystemCard}>
@@ -363,10 +382,17 @@ const generateImage = async () => {
             </div>
 
             <div className={styles.ecosystemCard}>
-              <img src="/img/voice.jpg" alt="ZU Voice" className={styles.ecosystemImage} />
-              <h3>Zu Voice</h3>
-              <p>A custom-tuned language model trained on Zu’s personality, tone, and narrative arc.</p>
-              <a href="#" className={styles.cardButton}>Meet Zu</a>
+            <img
+              src="/img/voice.jpg"
+              alt="ZU Voice"
+              className={styles.ecosystemImage}
+            />
+            <h3>Zu Voice</h3>
+            <p>
+              A custom-tuned language model trained on Zu’s personality, tone,
+              and narrative arc.
+            </p>
+            <ElevenLabsChat />
             </div>
 
             <div className={styles.ecosystemCard}>
