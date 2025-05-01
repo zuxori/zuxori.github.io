@@ -425,3 +425,127 @@ html {
   aspect-ratio: 3 / 2;
   object-fit: cover;
 }
+
+/* ─────────────────────────────────────────────
+   Reviews section – global classes
+   ──────────────────────────────────────────── */
+
+   :global(.container) {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+  }
+
+   :global(.review-section) {
+    position: relative;
+    padding: 4rem 1rem;
+    text-align: center;
+    background: #fcf8fb;
+  }
+  
+  :global(.review-title) {
+    font-size: 2.5rem;    /* match .sectionHeader h2 */
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+    color: #000;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  }
+
+  :global(.reviewGrid) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  
+  :global(.lanes) {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  
+  :global(.quote) {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  
+    padding: 2rem;
+    border-radius: 16px;
+    height: 9.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  
+    color: #EC3D9F;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+  
+    overflow: hidden;
+    word-break: break-word;
+  
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  :global(.quote-text) {
+    position: absolute;
+    opacity: 0;
+    color: #EC3D9F;                     /* ← ensures it matches your theme */
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+    text-align: center;
+  
+    transition: opacity 0.6s ease;
+    will-change: opacity;
+  
+    display: block;
+    max-width: 90%;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  :global(.quote-a),
+  :global(.quote-b) {
+    position: absolute;
+  }
+  
+  :global(.fade-in) {
+    opacity: 1;
+  }
+
+  @keyframes fadeInOut {
+    0%,   10%   { opacity: 0; }
+    20%,  80%   { opacity: 1; }
+    100%        { opacity: 0; }
+  }
+  
+  :global(.fade) {
+    animation-name: fadeInOut;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);  /* mythic smooth */
+    animation-fill-mode: both;
+    animation-duration: 12s;  /* or keep randomized via JS */
+  }
+  
+  /* ── title pulse ───────────────────────────── */
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6 }
+    50%      { opacity: 1 }
+  }
+  
+  /* ── mobile layout ─────────────────────────── */
+  @media (max-width: 768px) {
+    :global(.lanes) { flex-direction: column }
+    :global(.quote:not(:first-child)) { display: none }
+  }

@@ -3,6 +3,8 @@ import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import styles from './index.module.css';
 import ElevenLabsChat from '../components/ElevenLabsChat';
+import Reviews from '@site/src/components/Reviews';
+
 
 export default function Home() {
   const [hasInteracted, setHasInteracted] = useState(false);
@@ -34,31 +36,47 @@ const [imgLoading,setImgLoading]  = useState(false);
 // ── new voice chat state ─────────────────────────────────────
 const [voiceOpen, setVoiceOpen] = useState(false);
 
+
+// ── Chat with ZU ─────────────────────────────────────
+const [messages, setMessages] = useState([]); // 🧠 holds short-term memory
+
 const sendToZu = async () => {
-  if (!inputValue.trim()) return;
+  const userInput = inputValue.trim();
+  if (!userInput) return;
 
   setLoading(true);
-  setZuReply("Messaging Zu...");
+  setZuReply("Messaging Zu..");
+
+  const updatedMessages = [
+    ...messages,
+    { role: "user", content: userInput }
+  ].slice(-6); // keep last 3 user-Zu pairs (6 messages total)
 
   try {
     const res = await fetch("https://zu-portal.hello-7ef.workers.dev/", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ prompt: inputValue })
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        messages: updatedMessages,
+        system: "If you miss something earlier, you can say: 'Sorry—there’s a lot going on.'"
+      }),
     });
 
     const data = await res.json();
-    if (data.error) throw new Error(data.error);
+    const reply = data.reply ?? "Sorry—Zu didn’t respond.";
 
-    setZuReply(data.reply ?? "Zu didn't respond clearly.");
+    setMessages([
+      ...updatedMessages,
+      { role: "assistant", content: reply }
+    ]);
+
+    setZuReply(reply);
+    setInputValue('');
   } catch (err) {
-    console.error("sendToZu error:", err);
-    setZuReply(`Zu is in class.`);
+    console.error("Zu API error:", err);
+    setZuReply("Zu is in class.");
   } finally {
     setLoading(false);
-    setInputValue("");
   }
 };
 
@@ -243,12 +261,23 @@ const generateImage = async () => {
                     <div className={styles.imageCard}>
                       <img src="/img/wright.png" alt="Logo Poster" />
                       <h3>MYTH ENGINE</h3>
-                      <p>Explore our reincarnation mythology, retrieval tech, and LLM-authored research.</p>
-                      <a href="#" className={styles.cardButton}>Learn</a>
+                      <p>Summon infinite ZU X ORI in-world stories and reborn characters into being.</p>
+                      <a href="#" className={styles.cardButton}>Coming Soon</a>
                     </div>
                   </div>
                 </section>
 
+{/* Reviews Section 
+<section className={styles.coreRepos}>
+  <div className={styles.sectionHeader}>
+    <h2>Reviewers Say</h2>
+    <p>What readers are saying about the reincarnation sequel to Romeo & Juliet</p>
+  </div>
+  <div className={styles.cardGrid}>
+    <Reviews />
+  </div>
+</section>
+*/}
 
         {/* Core Repos (previously Story Repository) */}
         <section className={styles.coreRepos}>
