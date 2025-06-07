@@ -4194,7 +4194,7 @@ Landon snaps back into character:
 
 I cringe.  
 
-It’s not that Landon is especially bad. But when you’ve heard these words *for real*, hearing anyone else say them falls painfully short.  
+It’s not that Landon is especially bad. But when you’ve felt these words *for real*, hearing anyone else say them falls painfully short.  
 
 “Maybe—” I suggest, “just try being yourself.”  
 
