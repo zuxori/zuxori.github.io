@@ -1,0 +1,44 @@
+name = "myth-socket"
+main = "src/index.js"
+compatibility_date = "2025-08-13"
+account_id = "7ef3ee6b60f82d7c0f8d8510c5c5e801"
+
+# ===== Model binding (needed for env.AI.run) =====
+[ai]
+binding = "AI"
+
+# ===== Non-secret config (OK to keep here) =====
+[vars]
+PINECONE_HOST   = "https://zu-s0c4o4t.svc.aped-4627-b74a.pinecone.io"
+INDEX_NAMESPACE = ""
+# allow your UI origins (comma-separated)
+ALLOW_ORIGIN    = "*"
+TOPK            = "3"
+PINECONE_INDEX  = "zu"
+
+# ===== KV namespaces =====
+# demo key registry
+[[kv_namespaces]]
+binding = "DEMO_KEYS"
+id = "df5c45634ad9444d922121f2c9168524"
+
+# per-key daily counters
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "cf5dc1d806594be6a5a9a36e64dd8486"
+
+# embedding cache
+[[kv_namespaces]]
+binding = "EMBED_CACHE"
+id = "db64b3ae4e704673ae6ca6f9ad001987"
+
+[[kv_namespaces]]
+binding = "PERSONAS"
+id = "5ced291335fa4d25ab2bbdeebda8ba9f"
+
+[observability]
+enabled = true
+
+# (Optional) custom route once DNS is set
+# zone_name = "zuxori.com"
+# routes = ["api.zuxori.com/*"]
