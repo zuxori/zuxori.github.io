@@ -1,0 +1,19 @@
+# Node dependencies
+node_modules/
+
+# Build output
+build/
+
+# Docusaurus internals
+.cache/
+.docusaurus/
+
+# OS + editor clutter
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
