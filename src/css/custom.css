@@ -1,0 +1,251 @@
+:root {
+  /* Brand (Zu-pink) */
+  --ifm-color-primary:            #EC3D9F;
+  --ifm-color-primary-dark:       #c82e84;
+  --ifm-color-primary-darker:     #b42576;
+  --ifm-color-primary-darkest:    #9e2368;
+  --ifm-color-primary-light:      #f47dc0;
+  --ifm-color-primary-lighter:    #f9b2d8;
+  --ifm-color-primary-lightest:   #fad1e7;
+
+  /* Cross-site tokens */
+  --zu-pink:   var(--ifm-color-primary); /* shorthand alias */
+  --hover-bg:  transparent;
+  --text:      #333;
+  --surface:   #fff;
+  --card-bg:   #fff;
+
+  /* Misc. tweaks */
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.04);
+  --ifm-navbar-background-color: rgba(252, 248, 251, 0.80); /* 80 % opaque */
+}
+
+html[data-theme='dark'] {
+
+  --surface:   #141416;
+  --text:      #eee;
+  --card-bg:   #1e1f21;
+
+  --ifm-background-color:           var(--surface); /* align page & navbar bg */
+  --ifm-background-surface-color:   #141416;
+
+  /* Re-declare brand in case you want a slightly brighter pink on dark */
+  --ifm-color-primary:            #EC3D9F;
+  --ifm-color-primary-dark:       #d1358f;
+  --ifm-color-primary-darker:     #b92d7c;
+  --ifm-color-primary-light:      #f47dc0;
+  --ifm-color-primary-lighter:    #f9b2d8;
+
+  --ifm-navbar-background-color:   #141416;
+  --ifm-navbar-link-color:         #ffffff;
+  --ifm-footer-background-color:   #0e0e0f;
+  --ifm-footer-link-color:         #f5f5f5;
+
+  --docusaurus-highlighted-code-line-bg: rgba(255,255,255,0.05);
+  --ifm-navbar-background-color:   rgba(20, 20, 22, 0.65);  /* 65 % opaque */
+}
+
+/* =========================================================
+   Component tweaks (light + dark)
+   ========================================================= */
+
+/* Search input + dropdown */
+.navbar__search-input {
+  border-color: var(--ifm-color-primary);
+}
+.navbar__search-input:focus,
+.navbar__search-input:hover {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ifm-color-primary) 35%, transparent);
+}
+.dropdown__link--active,
+.dropdown__link:hover {
+  background-color: var(--ifm-color-primary);
+  color: #fff;
+}
+
+/* Code-block background for dark mode */
+html[data-theme='dark'] pre {
+  background-color: #1a1c1e;
+}
+
+/* === Footer styles (light + dark) === */
+html[data-theme='light'] .footer {
+  background: var(--surface);
+  border-top: 3px solid var(--zu-pink);
+  padding: 3rem 0;
+  color: var(--text);
+}
+html[data-theme='light'] .footer a {
+  color: var(--zu-pink);
+}
+html[data-theme='light'] .footer a:hover {
+  color: var(--ifm-color-primary-dark);
+  text-decoration: none;
+}
+html[data-theme='dark'] .footer {
+  background: linear-gradient(135deg, #141416 0%, #1a1c1e 50%, #141416 100%);
+  border-top: 3px solid var(--zu-pink);
+  padding: 3rem 0;
+  color: #f5f5f5;
+}
+html[data-theme='dark'] .footer a {
+  color: var(--zu-pink);
+}
+html[data-theme='dark'] .footer a:hover {
+  color: var(--ifm-color-primary-light);
+  text-decoration: none;
+}
+@media (max-width: 480px) {
+  .footer {
+    padding: 2rem 0;
+  }
+}
+
+/* === Footer layout === */
+.footer-inner {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.footer-brand,
+.footer-column {
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+}
+.footer-brand {
+  text-align: center;
+}
+.footer-brand img {
+  max-width: 110px;
+  margin-bottom: 0.5rem;
+}
+.footer-tagline {
+  margin: 0.25rem 0;
+  font-weight: 500;
+}
+.footer-main-link {
+  color: var(--ifm-link-color);
+  text-decoration: none;
+}
+.footer .container {
+  max-width: 1100px;
+}
+.footer__links {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+}
+.footer-inner > .footer-column:nth-of-type(2),
+.footer-inner > .footer-column:nth-of-type(3) {
+  margin-top: 2rem;
+}
+.footer__link-list,
+.footer__link-title {
+  text-align: center;
+}
+
+/* === Responsive layout === */
+@media (min-width: 701px) and (max-width: 968px) {
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    justify-items: center;
+  }
+  .footer-brand {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+  .footer-column:nth-of-type(1) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .footer-column:nth-of-type(2) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+@media (max-width: 700px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 3.25rem;
+  }
+  .footer-brand img {
+    max-width: 220px;
+    margin-bottom: 0.4rem;
+  }
+  .footer-tagline,
+  .footer-main-link {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 655px) {
+  .footer-inner {
+    gap: 2.75rem;
+  }
+  .footer-brand img {
+    max-width: 360px;
+  }
+}
+
+/* Light-mode card fill */
+html[data-theme='light'] .personaCard,
+html[data-theme='light'] .heroCard,
+html[data-theme='light'] .ecosystemCard {
+  background: var(--card-bg); 
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06)      
+}
+
+/* === Transparent dark-mode cards with Zu-pink border === */
+html[data-theme='dark'] .heroCard,
+html[data-theme='dark'] .personaCard,
+html[data-theme='dark'] .ecosystemCard {
+  background-color: #141416;
+  border: 0px solid var(--zu-pink);
+  box-shadow: 0 4px 12px rgba(235, 43, 190, 0.3);
+  backdrop-filter: blur(4px);
+}
+/* Override default navbar bottom border */
+.navbar,
+.navbar--sticky {
+  border-bottom: none !important;
+}
+
+/* Remove any residual navbar separator */
+.navbar,
+.navbar--sticky {
+  box-shadow: none !important; /* Docusaurus adds a shadow by default */
+}
+
+.navbar::after {
+  content: none !important;    /* Some themes add a 1‑px line via ::after */
+}
+/* Translucent navbar glass effect */
+.navbar {
+  background: var(--ifm-navbar-background-color) !important;
+  backdrop-filter: blur(4px);     /* glassy soften-behind */
+}
+
+
+/* --- Mobile sidebar fixes -------------------------------------------------- */
+/* 1. Disable blur while the sidebar is open */
+html.navbar-sidebar--show .navbar {
+  backdrop-filter: none;
+}
+
+/* 2. On screens that use the hamburger, drop the blur entirely
+      (avoids stacking‑context glitches)                                    */
+@media (max-width: 1000px) {
+  .navbar {
+    backdrop-filter: none;
+  }
+}
+

@@ -1,0 +1,9 @@
+[submodule "docs/story"]
+	path = docs/story
+	url = https://github.com/zuxori/story
+[submodule "docs/characters"]
+	path = docs/characters
+	url = https://github.com/zuxori/characters
+[submodule "docs/research"]
+	path = docs/research
+	url = https://github.com/zuxori/research

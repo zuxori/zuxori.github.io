@@ -1,0 +1,724 @@
+/* ---------------------------------------------------------
+   ZU × ORI – CSS Variables
+   --------------------------------------------------------- */
+:root {
+  --zu-pink: #ec3d9f;
+  --hover-bg: transparent;
+  --text: #555;
+  --surface: #fff;
+}
+
+/* Dark‑theme variables */
+html[data-theme='dark'] {
+  --surface: #141416;
+  --text: #eee;
+}
+
+.hero {
+  background: #fcf8fb;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1080px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 4rem 1rem;
+}
+
+@media (max-width: 900px) {
+  .heroContent {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.heroText, .heroImage {
+  flex: 1;
+  min-width: 0;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+  color: #EC3D9F;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: block;
+  align-items: center;
+}
+.plusRotate {
+  --y-offset: -0.08em;               /* ← tweak this until it sits perfectly */
+  display: inline-block;
+  position: relative;
+  top: var(--y-offset);              /* lift the whole spinner up */
+  width: 0.6em;
+  height: 0.6em;
+  margin: 0 0.15em;
+  transform-origin: center center;
+  color: #000;                       /* always black */
+  animation: spinWithPauses 16s ease-in-out infinite;
+  vertical-align: middle;
+  line-height: 0;
+}
+
+.barHorizontal,
+.barVertical {
+  position: absolute;
+  background: currentColor;
+}
+
+.barHorizontal {
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 0.15em;
+  transform: translate(-50%, -50%);
+}
+
+.barVertical {
+  top: 50%;
+  left: 50%;
+  width: 0.15em;
+  height: 100%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spinWithPauses {
+   0%,    6.25%   { transform: rotate(   0deg); }
+  12.5%, 18.75%   { transform: rotate(  -45deg); }
+  25%,   31.25%   { transform: rotate(  -90deg); }
+  37.5%, 43.75%   { transform: rotate( -135deg); }
+  50%,   56.25%   { transform: rotate( -180deg); }
+  62.5%, 68.75%   { transform: rotate( -225deg); }
+  75%,   81.25%   { transform: rotate( -270deg); }
+  87.5%, 93.75%   { transform: rotate( -315deg); }
+  100%            { transform: rotate( -360deg); }
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+@media (max-width: 900px) {
+  .buttonGroup {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.cta {
+  background: var(--zu-pink);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.cta:hover {
+  color: var(--zu-pink);
+  background-color: var(--hover-bg);
+  box-shadow: inset 0 0 0 2px var(--zu-pink);
+  text-decoration: none;
+}
+
+.secondary {
+  color: #555;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+}
+
+.extensions {
+  padding: 4rem 1rem;
+  background: #fcf8fb;
+  text-align: center;
+}
+
+.section {
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.sectionHeader h2 {
+  font-size: 2.5rem; /* Bigger headline */
+  font-weight: 700;   /* Bolder */
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+.sectionHeader p {
+  margin-bottom: 3%; /* or 2.5rem for subtle spacing */
+}
+
+.repoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 0 auto;
+  padding: 0rem 0rem;
+  max-width: 1080px;
+}
+
+@media (max-width: 900px) {
+  .repoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .repoGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.externalIcon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  text-decoration: none;
+  color: #EC3D9F;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.repoCard {
+  background: transparent;
+  border: 2px solid #ec3d9f; 
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;     /* ✅ sets a soft baseline height */
+  transition: transform 0.2s ease;
+  position: relative;
+  text-decoration: none;
+}
+
+
+
+.repoCard:hover {
+  background: #fad1e7;
+  text-decoration: none;
+}
+
+.repoCard:hover .externalIcon {
+  opacity: 0.9;   /* show on hover */
+  pointer-events: auto;
+}
+
+.repoHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.repoHeader h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.emoji {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.repoCard .emoji {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.repoCard h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.repoCard p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.repoCard a {
+  font-weight: 500;
+  color: #EC3D9F;
+  text-decoration: none; /* ✅ removes underline */
+  transition: color 0.2s ease;
+}
+
+.repoCard a:hover {
+  color: #b42576;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.coreRepos {
+  padding: 4rem 1rem;
+  background: #fcf8fb;
+  text-align: center;
+}
+
+.visualCards {
+  padding: 4rem 1rem;
+  background: #f7f4f9;
+  text-align: center;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.imageCard {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  overflow: hidden;
+  text-align: left;
+  transition: transform 0.2s ease;
+}
+
+.imageCard:hover {
+  transition: transform 0.2s ease;
+}
+
+
+.imageCard img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* ────────────────
+   Scroll-based zoom support
+   ──────────────── */
+.imageWrapper {
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+}
+
+.imageWrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: scale(1);
+  transition: transform 0.6s ease-out;
+  will-change: transform;
+}
+
+.imageCard h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.imageCard p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.cardButton {
+  display: block;
+  width: 100%;
+  background: var(--zu-pink);
+  color: #fff;
+  padding: 0.75rem 0;          /* identical vertical height */
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  text-align: center;
+  margin-top: 1rem;
+  transition: background 0.2s ease;
+  line-height: 1.65; /* added for 11 Labs button */
+
+  /* reset the native button look */
+  border: none;                /* removes the grey button border */
+  outline: none;               /* removes the grey focus outline */
+  appearance: none;            /* kills OS-specific bevels/gradients */
+  cursor: pointer;             /* pointer on both <a> & <button> */
+}
+
+.cardButton:hover {
+  color: var(--zu-pink);
+  background-color: var(--hover-bg);
+  box-shadow: inset 0 0 0 2px var(--zu-pink);
+  text-decoration: none;
+}
+
+.personaButton {
+  background: var(--zu-pink);
+  color: #fff;
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  /* reset the native button look */
+  border: none;                /* removes the grey button border */
+  outline: none;               /* removes the grey focus outline */
+  appearance: none;            /* kills OS-specific bevels/gradients */
+  cursor: pointer;             /* pointer on both <a> & <button> */
+}
+
+.personaButton:hover {
+  color: var(--zu-pink);
+  background-color: var(--hover-bg);
+  box-shadow: inset 0 0 0 2px var(--zu-pink);
+  text-decoration: none;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+.llmEmbed iframe {
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.llmInputBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.llmInput {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: inherit;
+  background: #fff;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.llmResponse {
+  margin-top: 2rem;
+  background: #fcf8fb; /* very soft mythic pink */
+  border: 1px solid #EC3D9F; /* delicate Zu pink border */
+  padding: 1.5rem;
+  border-radius: 12px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1rem;
+  color: #555;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* subtle myth shadow */
+  transition: all 0.3s ease;
+}
+
+.llmSubmit {
+  padding: 0.75rem 1.25rem;
+  background: var(--zu-pink);
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.llmSubmit:hover {
+  color: var(--zu-pink);
+  background-color: var(--hover-bg);
+  box-shadow: inset 0 0 0 2px var(--zu-pink);
+  text-decoration: none;
+}
+
+.ecosystem {
+  background: #fcf8fb;
+}
+
+.ecosystemGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0rem 1rem;
+}
+
+.ecosystemCard {
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  text-align: left;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ecosystemCard:hover {
+  transform: translateY(-4px);
+}
+
+.ecosystemImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+/* ─────────────────────────────────────────────
+   Reviews section – global classes
+   ──────────────────────────────────────────── */
+
+   :global(.container) {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+  }
+
+   :global(.review-section) {
+    position: relative;
+    padding: 4rem 1rem;
+    text-align: center;
+    background: #fcf8fb;
+  }
+  
+  :global(.review-title) {
+    font-size: 2.5rem;    /* match .sectionHeader h2 */
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+    color: #000;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  }
+
+  :global(.reviewGrid) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  
+  :global(.lanes) {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  
+  :global(.quote) {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  
+    padding: 2rem;
+    border-radius: 16px;
+    height: 9.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  
+    color: #EC3D9F;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+  
+    overflow: hidden;
+    word-break: break-word;
+  
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  :global(.quote-text) {
+    position: absolute;
+    opacity: 0;
+    color: #EC3D9F;                     /* ← ensures it matches your theme */
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+    text-align: center;
+  
+    transition: opacity 0.6s ease;
+    will-change: opacity;
+  
+    display: block;
+    max-width: 90%;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  :global(.quote-a),
+  :global(.quote-b) {
+    position: absolute;
+  }
+  
+  :global(.fade-in) {
+    opacity: 1;
+  }
+
+  @keyframes fadeInOut {
+    0%,   10%   { opacity: 0; }
+    20%,  80%   { opacity: 1; }
+    100%        { opacity: 0; }
+  }
+  
+  :global(.fade) {
+    animation-name: fadeInOut;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);  /* mythic smooth */
+    animation-fill-mode: both;
+    animation-duration: 12s;  /* or keep randomized via JS */
+  }
+  
+  /* ── title pulse ───────────────────────────── */
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6 }
+    50%      { opacity: 1 }
+  }
+  
+  /* ── mobile layout ─────────────────────────── */
+  @media (max-width: 768px) {
+    :global(.lanes) { flex-direction: column }
+    :global(.quote:not(:first-child)) { display: none }
+  }
+
+  .bundleActions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+/* --- Navbar hover color: Zu pink (override) --- */
+:global(nav a:hover),
+:global(nav a:focus),
+:global(.nav-link:hover),
+:global(.navbar a:hover),
+:global(.navbar__link:hover),
+:global(.navbar__link--active) {
+  color: #EC3D9F !important; /* Zu pink overrides any other color */
+}
+
+:global(input.navbar__search-input::placeholder) {
+  color: #EC3D9F;
+  opacity: 0.75;
+  content: "Search ⌘ K";
+}
+
+
+/* ---------------------------------------------------------
+   ZU × ORI – Dark‑mode section backgrounds
+   --------------------------------------------------------- */
+html[data-theme='dark'] .hero,
+html[data-theme='dark'] .extensions,
+html[data-theme='dark'] .coreRepos,
+html[data-theme='dark'] .visualCards,
+html[data-theme='dark'] .ecosystem,
+html[data-theme='dark'] .llmResponse,
+html[data-theme='dark'] .review-section {
+  background: #141416;            /* deep charcoal */
+}
+
+.imageCard img {
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* force a square box */
+  object-fit: cover;     /* neatly crop non-square sources */
+}
+.repoCard {
+  text-decoration: none;
+}
+.repoCard:hover {
+  text-decoration: none;
+}
+
+/* Scale all images on hover */
+:global img {
+  transition: transform 0.2s ease;
+  will-change: transform;
+}
+:global img:not(.no-zoom):hover {
+  transform: scale(1.05);
+}
+/* 1) Clip scaled images inside their card wrapper */
+:global .imageCard,
+:global .repoCard {
+  overflow: hidden;
+}
+
+/* 2) Make images scale from their center */
+:global img {
+  transform-origin: center center;
+}
+
+
+/* Prevent zoom on logo images in hero and footer */
+:global img.no-zoom {
+  transform: none !important;
+  transition: none !important;
+}
+
+html[data-theme='dark'] .imageCard,
+html[data-theme='dark'] .personaCard,
+html[data-theme='dark'] .ecosystemCard {
+  background: #141416;
+  border: 0px solid var(--zu-pink);
+  box-shadow: 0 4px 12px rgba(235, 43, 190, 0.3);
+
+}
+
+html[data-theme='dark'] .plusRotate {
+  color: #fff !important;
+}
